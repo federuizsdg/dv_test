@@ -1,8 +1,13 @@
-{%- set source_model = ["v_stg_orders", "v_stg_inventory"] -%}
-{%- set src_pk = "REGION_PK" -%}
-{%- set src_nk = "REGION_KEY" -%}
-{%- set src_ldts = "LOAD_DATE" -%}
-{%- set src_source = "RECORD_SOURCE" -%}
+{%- set hub_region_metadata -%}
+source_models:
+  - 'v_stg_orders'
+  - 'v_stg_inventory'
+src_pk: 'REGION_PK'
+src_nk:
+  - 'REGIONKEY'
+src_ldts: 'LOAD_DATE'
+src_source: 'RECORD_SOURCE'
+{%- endset -%}
 
-{{ automate_dv.hub(src_pk=src_pk, src_nk=src_nk, src_ldts=src_ldts,
-                   src_source=src_source, source_model=source_model) }}
+{%- set hub_region_metadata = fromyaml(hub_region_metadata) -%}
+{{ generate_hub(hub_region_metadata) }}
