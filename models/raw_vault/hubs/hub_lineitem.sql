@@ -1,8 +1,14 @@
-{%- set source_model = "v_stg_orders" -%}
-{%- set src_pk = "LINEITEM_PK" -%}
-{%- set src_nk = ["LINENUMBER", "ORDERKEY"] -%}
-{%- set src_ldts = "LOAD_DATE" -%}
-{%- set src_source = "RECORD_SOURCE" -%}
+{%- set hub_lineitem_metadata -%}
+source_models:
+  - 'v_stg_orders'
+source_models_alias: 'rr'
+src_pk: 'LINEITEM_PK'
+src_nk:
+  - 'LINENUMBER'
+  - 'ORDERKEY'
+src_ldts: 'LOAD_DATE'
+src_source: 'RECORD_SOURCE'
+{%- endset -%}
 
-{{ automate_dv.hub(src_pk=src_pk, src_nk=src_nk, src_ldts=src_ldts,
-                   src_source=src_source, source_model=source_model) }}
+{%- set hub_lineitem_metadata = fromyaml(hub_lineitem_metadata) -%}
+{{ generate_hub(hub_lineitem_metadata) }}
