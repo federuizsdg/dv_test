@@ -1,8 +1,14 @@
-{%- set source_model = "v_stg_inventory" -%}
-{%- set src_pk = "LINK_SUPPLIER_NATION_PK" -%}
-{%- set src_fk = ["SUPPLIER_PK", "NATION_PK"] -%}
-{%- set src_ldts = "LOAD_DATE" -%}
-{%- set src_source = "RECORD_SOURCE" -%}
+{%- set link_supplier_nation_metadata -%}
+source_models:
+  - 'v_stg_inventory'
+src_pk:
+  - 'LINK_SUPPLIER_NATION_PK'
+src_fk:
+  - 'SUPPLIER_PK'
+  - 'NATION_PK'
+src_ldts: 'LOAD_DATE'
+src_source: 'RECORD_SOURCE'
+{%- endset -%}
 
-{{ automate_dv.link(src_pk=src_pk, src_fk=src_fk, src_ldts=src_ldts,
-                    src_source=src_source, source_model=source_model) }}
+{%- set supplier_nation_metadata = fromyaml(link_supplier_nation_metadata) -%}
+{{ generate_link(supplier_nation_metadata) }}
