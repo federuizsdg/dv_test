@@ -1,12 +1,20 @@
-{%- set source_model = "v_stg_inventory" -%}
-{%- set src_pk = "SUPPLIER_PK" -%}
-{%- set src_hashdiff = "SUPPLIER_NATION_HASHDIFF" -%}
-{%- set src_payload = ["SUPPLIER_NATION_NAME", "SUPPLIER_NATION_COMMENT"] -%}
-{%- set src_eff = "EFFECTIVE_FROM" -%}
-{%- set src_ldts = "LOAD_DATE" -%}
-{%- set src_source = "RECORD_SOURCE" -%}
+{%- set sat_inv_supp_region_metadata -%}
+source_models:
+  - 'v_stg_inventory'
+src_pk:
+  - 'SUPPLIER_PK'
+src_hashdiff:
+  - 'SUPPLIER_NATION_HASHDIFF'
+src_payload:
+  - 'SUPPLIER_NATION_NAME'
+  - 'SUPPLIER_NATION_COMMENT'
+src_eff:
+  - 'EFFECTIVE_FROM'
+src_ldts:
+  - 'LOAD_DATE'
+src_source:
+  - 'RECORD_SOURCE'
+{%- endset -%}
 
-{{ automate_dv.sat(src_pk=src_pk, src_hashdiff=src_hashdiff,
-                   src_payload=src_payload, src_eff=src_eff,
-                   src_ldts=src_ldts, src_source=src_source,
-                   source_model=source_model) }}
+{%- set inv_supp_region_metadata = fromyaml(sat_inv_supp_region_metadata) -%}
+{{ generate_satellite(inv_supp_region_metadata) }}

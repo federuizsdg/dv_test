@@ -1,14 +1,29 @@
-{%- set source_model = "v_stg_orders" -%}
-{%- set src_pk = "LINEITEM_PK" -%}
-{%- set src_hashdiff = "LINEITEM_HASHDIFF" -%}
-{%- set src_payload = ["COMMITDATE", "DISCOUNT", "EXTENDEDPRICE", "LINE_COMMENT",
-                       "QUANTITY", "RECEIPTDATE", "RETURNFLAG", "SHIPDATE",
-                       "SHIPINSTRUCT", "SHIPMODE", "TAX"] -%}
-{%- set src_eff = "EFFECTIVE_FROM" -%}
-{%- set src_ldts = "LOAD_DATE" -%}
-{%- set src_source = "RECORD_SOURCE" -%}
+{%- set sat_order_lineitem_metadata -%}
+source_models:
+  - 'v_stg_orders'
+src_pk:
+  - 'LINEITEM_PK'
+src_hashdiff:
+  - 'LINEITEM_HASHDIFF'
+src_payload:
+  - 'COMMITDATE'
+  - 'DISCOUNT'
+  - 'EXTENDEDPRICE'
+  - 'LINE_COMMENT'
+  - 'QUANTITY'
+  - 'RECEIPTDATE'
+  - 'RETURNFLAG'
+  - 'SHIPDATE'
+  - 'SHIPINSTRUCT'
+  - 'SHIPMODE'
+  - 'TAX'
+src_eff:
+  - 'EFFECTIVE_FROM'
+src_ldts:
+  - 'LOAD_DATE'
+src_source:
+  - 'RECORD_SOURCE'
+{%- endset -%}
 
-{{ automate_dv.sat(src_pk=src_pk, src_hashdiff=src_hashdiff,
-                   src_payload=src_payload, src_eff=src_eff,
-                   src_ldts=src_ldts, src_source=src_source,
-                   source_model=source_model) }}
+{%- set order_lineitem_metadata = fromyaml(sat_order_lineitem_metadata) -%}
+{{ generate_satellite(order_lineitem_metadata) }}

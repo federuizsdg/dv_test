@@ -1,6 +1,6 @@
 {% macro generate_link (metadata_dict) %}
     {%- set models_to_link = metadata_dict['source_models'] -%}
-    {% set merged_keys_for_where = metadata_dict['src_pk'] + metadata_dict['src_fk'] %}
+    {%- set merged_keys_for_where = metadata_dict['src_pk'] + metadata_dict['src_fk'] -%}
     {%- set row_rank_template = namespace(value='') -%}
     {%- set row_rank_template.value = row_rank_template.value ~ 'WITH row_rank_<ITEM> AS ('~ '\n' -%}
     {%- set row_rank_template.value = row_rank_template.value ~ '  SELECT <SOURCEALIAS>.<PK>, <FK>, <SOURCEALIAS>.<LDTS>, <SOURCEALIAS>.<SOURCE>,'~ '\n' -%}
