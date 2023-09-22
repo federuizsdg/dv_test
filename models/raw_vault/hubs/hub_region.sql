@@ -4,7 +4,7 @@ source_models:
   - 'v_stg_inventory'
 src_pk: 'REGION_PK'
 src_nk:
-  - 'REGIONKEY'
+  - 'REGION_KEY'
 src_ldts: 'LOAD_DATE'
 src_source: 'RECORD_SOURCE'
 {%- endset -%}
