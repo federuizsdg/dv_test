@@ -1,5 +1,6 @@
 {%- set raw_transactions_metadata -%}
-raw_table: 'RAW_TRANSACTIONS'
+raw_table:
+  - 'RAW_TRANSACTIONS'
 derived_columns:
   RECORD_SOURCE: '*RAW_TRANSACTIONS'
   LOAD_DATE: DATEADD(DAY, 1, TRANSACTION_DATE)
@@ -22,9 +23,10 @@ hashed_columns:
 
 {% set metadata_dict = fromyaml(raw_transactions_metadata) %}
 
-{% set raw_table = metadata_dict['raw_table'] %}
+{% set raw_table = metadata_dict['raw_table'][0] %}
 {% set derived_columns = metadata_dict['derived_columns'] %}
 {% set hashed_columns = metadata_dict['hashed_columns'] %}
+{{ generate_dependencies( metadata_dict['raw_table'] ) }}
 
 WITH staging AS (
 

@@ -11,4 +11,5 @@ src_source: 'RECORD_SOURCE'
 {%- endset -%}
 
 {%- set order_lineitem_metadata = fromyaml(link_order_lineitem_metadata) -%}
+{{ generate_dependencies( order_lineitem_metadata['source_models'] ) }}
 {{ generate_link(order_lineitem_metadata) }}

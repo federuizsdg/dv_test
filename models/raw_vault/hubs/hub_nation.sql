@@ -10,4 +10,5 @@ src_source: 'RECORD_SOURCE'
 {%- endset -%}
 
 {%- set hub_nation_metadata = fromyaml(hub_nation_metadata) -%}
+{{ generate_dependencies( hub_nation_metadata['source_models'] ) }}
 {{ generate_hub(hub_nation_metadata) }}
