@@ -12,4 +12,5 @@ src_source: 'RECORD_SOURCE'
 {%- endset -%}
 
 {%- set inventory_allocation_metadata = fromyaml(link_inventory_allocation_metadata) -%}
+{{ generate_dependencies( inventory_allocation_metadata['source_models'] ) }}
 {{ generate_link(inventory_allocation_metadata) }}

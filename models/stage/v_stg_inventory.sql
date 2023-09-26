@@ -1,5 +1,6 @@
 {%- set raw_inventory_metadata -%}
-raw_table: 'RAW_INVENTORY'
+raw_table:
+  - 'RAW_INVENTORY'
 derived_columns:
   NATION_KEY: 'SUPPLIER_NATION_KEY'
   REGION_KEY: 'SUPPLIER_REGION_KEY'
@@ -88,9 +89,10 @@ hashed_columns:
 {%- endset -%}
 
 {% set metadata_dict = fromyaml(raw_inventory_metadata) %}
-{% set raw_table = metadata_dict['raw_table'] %}
+{% set raw_table = metadata_dict['raw_table'][0] %}
 {% set derived_columns = metadata_dict['derived_columns'] %}
 {% set hashed_columns = metadata_dict['hashed_columns'] %}
+{{ generate_dependencies( metadata_dict['raw_table'] ) }}
 
 WITH staging AS (
 

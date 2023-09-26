@@ -11,4 +11,5 @@ src_source: 'RECORD_SOURCE'
 {%- endset -%}
 
 {%- set supplier_nation_metadata = fromyaml(link_supplier_nation_metadata) -%}
+{{ generate_dependencies( supplier_nation_metadata['source_models'] ) }}
 {{ generate_link(supplier_nation_metadata) }}

@@ -20,4 +20,5 @@ src_source:
 {%- endset -%}
 
 {%- set inv_supplier_details_metadata = fromyaml(sat_inv_supplier_details_metadata) -%}
+{{ generate_dependencies( inv_supplier_details_metadata['source_models'] ) }}
 {{ generate_satellite(inv_supplier_details_metadata) }}

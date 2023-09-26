@@ -17,4 +17,5 @@ src_source:
 {%- endset -%}
 
 {%- set order_cust_nation_metadata = fromyaml(sat_order_cust_nation_metadata) -%}
+{{ generate_dependencies( order_cust_nation_metadata['source_models'] ) }}
 {{ generate_satellite(order_cust_nation_metadata) }}
