@@ -26,4 +26,5 @@ src_source:
 {%- endset -%}
 
 {%- set order_lineitem_metadata = fromyaml(sat_order_lineitem_metadata) -%}
+{{ generate_dependencies( order_lineitem_metadata['source_models'] ) }}
 {{ generate_satellite(order_lineitem_metadata) }}

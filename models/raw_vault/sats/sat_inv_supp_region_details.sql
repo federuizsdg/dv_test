@@ -17,4 +17,5 @@ src_source:
 {%- endset -%}
 
 {%- set inv_supp_region_metadata = fromyaml(sat_inv_supp_region_metadata) -%}
+{{ generate_dependencies( inv_supp_region_metadata['source_models'] ) }}
 {{ generate_satellite(inv_supp_region_metadata) }}

@@ -1,5 +1,6 @@
 {%- set raw_orders_metadata -%}
-raw_table: 'RAW_ORDERS'
+raw_table:
+  - 'RAW_ORDERS'
 derived_columns:
   CUSTOMER_KEY: 'CUSTOMERKEY'
   NATION_KEY: 'CUSTOMER_NATION_KEY'
@@ -128,10 +129,11 @@ hashed_columns:
       - 'TOTALPRICE'
 {%- endset -%}
 
-{% set orders_dict = fromyaml(raw_orders_metadata) %}
-{% set raw_table = orders_dict['raw_table'] %}
-{% set derived_columns = orders_dict['derived_columns'] %}
-{% set hashed_columns = orders_dict['hashed_columns'] %}
+{% set metadata_dict = fromyaml(raw_orders_metadata) %}
+{% set raw_table = metadata_dict['raw_table'][0] %}
+{% set derived_columns = metadata_dict['derived_columns'] %}
+{% set hashed_columns = metadata_dict['hashed_columns'] %}
+{{ generate_dependencies( metadata_dict['raw_table'] ) }}
 
 WITH staging AS (
 

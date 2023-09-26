@@ -20,4 +20,5 @@ src_source:
 {%- endset -%}
     
 {%- set transactions_metadata = fromyaml(t_link_transactions_metadata) -%}
+{{ generate_dependencies( transactions_metadata['source_models'] ) }}
 {{ generate_t_link(transactions_metadata) }}

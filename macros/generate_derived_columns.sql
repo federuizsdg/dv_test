@@ -16,4 +16,4 @@
       {{ "    " if not loop.first}}{{- col_name -}}{{ ",\n" if not loop.last }}
     {%- endif -%}
   {%- endfor -%}
-{%- endmacro %}
+{%- endmacro -%}
