@@ -1,3 +1,7 @@
+{%- if not execute -%}
+    -- depends_on: {{ ref('v_stg_orders') }}
+    -- depends_on: {{ ref('v_stg_inventory') }}
+{%- endif -%}
 {%- set link_nation_region_metadata -%}
 source_models:
   - 'v_stg_orders'

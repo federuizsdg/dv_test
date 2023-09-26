@@ -5,7 +5,6 @@
     where table_name='{{ table_name }}'
     order by ORDINAL_POSITION;
     {% endset %}
-
     {%- set raw_inventory_columns = run_query(columns_query) -%}
     {%- if execute -%}
     {%- set raw_inventory_columns_data = raw_inventory_columns.columns -%}
@@ -15,6 +14,5 @@
     {% endif -%}
     {% endfor -%}
     {% endif -%}
-
 {%- endmacro %}
 

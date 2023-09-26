@@ -1,3 +1,6 @@
+{%- if not execute -%}
+    -- depends_on: {{ ref('raw_inventory') }}
+{%- endif -%}
 {%- set raw_inventory_metadata -%}
 raw_table:
   - 'RAW_INVENTORY'
@@ -92,7 +95,6 @@ hashed_columns:
 {% set raw_table = metadata_dict['raw_table'][0] %}
 {% set derived_columns = metadata_dict['derived_columns'] %}
 {% set hashed_columns = metadata_dict['hashed_columns'] %}
-{{ generate_dependencies( metadata_dict['raw_table'] ) }}
 
 WITH staging AS (
 
