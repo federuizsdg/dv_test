@@ -1,3 +1,6 @@
+{%- if not execute -%}
+    -- depends_on: {{ ref('v_stg_inventory') }}
+{%- endif -%}
 {%- set sat_inv_inventory_details_metadata -%}
 source_models:
   - 'v_stg_inventory'
