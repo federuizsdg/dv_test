@@ -35,21 +35,21 @@ SELECT
     d.N_COMMENT AS CUSTOMER_NATION_COMMENT,
     e.R_NAME AS CUSTOMER_REGION_NAME,
     e.R_COMMENT AS CUSTOMER_REGION_COMMENT
-FROM {{ source('tpch_sample', 'ORDERS') }} AS b
-LEFT JOIN {{ source('tpch_sample', 'LINEITEM') }} AS a
+FROM {{ source('snowflake_sample', 'ORDERS') }} AS b
+LEFT JOIN {{ source('snowflake_sample', 'LINEITEM') }} AS a
     ON a.L_ORDERKEY = b.O_ORDERKEY
-LEFT JOIN {{ source('tpch_sample', 'CUSTOMER') }} AS c
+LEFT JOIN {{ source('snowflake_sample', 'CUSTOMER') }} AS c
     ON b.O_CUSTKEY  = c.C_CUSTKEY
-LEFT JOIN {{ source('tpch_sample', 'NATION') }} AS d
+LEFT JOIN {{ source('snowflake_sample', 'NATION') }} AS d
     ON c.C_NATIONKEY  = d.N_NATIONKEY
-LEFT JOIN {{ source('tpch_sample', 'REGION') }} AS e
+LEFT JOIN {{ source('snowflake_sample', 'REGION') }} AS e
     ON d.N_REGIONKEY  = e.R_REGIONKEY
-LEFT JOIN {{ source('tpch_sample', 'PART') }} AS g
+LEFT JOIN {{ source('snowflake_sample', 'PART') }} AS g
     ON a.L_PARTKEY = g.P_PARTKEY
-LEFT JOIN {{ source('tpch_sample', 'SUPPLIER') }} AS h
+LEFT JOIN {{ source('snowflake_sample', 'SUPPLIER') }} AS h
     ON a.L_SUPPKEY = h.S_SUPPKEY
-LEFT JOIN {{ source('tpch_sample', 'NATION') }} AS j
+LEFT JOIN {{ source('snowflake_sample', 'NATION') }} AS j
     ON h.S_NATIONKEY = j.N_NATIONKEY
-LEFT JOIN {{ source('tpch_sample', 'REGION') }} AS k
+LEFT JOIN {{ source('snowflake_sample', 'REGION') }} AS k
     ON j.N_REGIONKEY = k.R_REGIONKEY
 WHERE b.O_ORDERDATE = TO_DATE('{{ var('load_date') }}')

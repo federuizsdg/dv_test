@@ -94,8 +94,6 @@ hashed_columns:
 
 WITH staging AS (
 
-
-
 WITH raw_columns AS (
 
   SELECT
