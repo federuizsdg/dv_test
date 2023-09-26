@@ -1,3 +1,6 @@
+{%- if not execute -%}
+    -- depends_on: {{ ref('v_stg_transactions') }}
+{%- endif -%}
 {%- set t_link_transactions_metadata -%}
 source_models:
   - 'v_stg_transactions'
