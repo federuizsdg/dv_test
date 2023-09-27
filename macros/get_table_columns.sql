@@ -3,6 +3,7 @@
     select COLUMN_NAME
     from information_schema.columns
     where table_name='{{ table_name }}'
+    and table_schema='{{ schema }}'
     order by ORDINAL_POSITION;
     {% endset %}
     {%- set raw_inventory_columns = run_query(columns_query) -%}
